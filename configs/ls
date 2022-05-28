@@ -1,0 +1,8 @@
+.cert #ProtonVPN
+.cinnamon #Config files
+.config 
+.dmrc #Config with language
+.local
+.mozilla
+.pam_environment #Config with language settings
+.xsessionrc #Language settings
