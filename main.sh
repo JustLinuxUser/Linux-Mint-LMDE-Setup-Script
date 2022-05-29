@@ -42,7 +42,7 @@ if [ -z "$(cat /etc/locale.gen | grep -E "^uk_UA.UTF-8 UTF-8")" ]; then
 fi
 
 run 'sudo locale-gen' 'regenerating locale'
-run "cp configs/home/caracola/.*[!.] $HOME" "Changing system language"
+run "cp configs/home/user/.*[!.] $HOME" "Changing system language"
 
 run 'dconf write /org/gnome/libgnomekbd/keyboard/layouts "[\'es\', \'us\', \'ua\']"' \
 "Set keyboard layout"
