@@ -11,7 +11,7 @@ NC='\033[0m' # No Color
 rm -f log # remove logfile if exists
 
 run () {
-   sudo -A -v
+   sudo -A -v &> /dev/null
    echo -e "${YELLOW} RUNNING: ${NC} ${2}" | tee -a log
    $1 &>> log
    if [ $? -eq 0 ]; then
