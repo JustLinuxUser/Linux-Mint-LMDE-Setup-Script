@@ -26,14 +26,18 @@ run () {
    fi
 }
 
+run "sudo dpkg -i debs/*" "Installing predownloaded packages"
 run "sudo apt-get update --yes" \
 "Update package database"
 
-run "sudo apt-get upgrade --yes" \
+run "sudo apt-get dist-upgrade --yes" \
 "Upgrade installed packages (may take a long time)"
 
 run "sudo apt-get install $req --yes" \
 "Install packages (may take a long time)"
+
+run "flatpak install flathub com.skype.Client" \
+"Installing flatpak packages"
 
 # Check if Ukrainian locale is already enabled
 if [ -z "$(cat /etc/locale.gen | grep -E "^uk_UA.UTF-8 UTF-8")" ]; then
@@ -58,14 +62,20 @@ tail -n8| \
 awk -F/ '{print $2}' | \
 awk -F\" '{print $1}')
 
-run "LC_ALL=uk_UA.UTF-8 xdg-user-dirs-update --force" "Change home folder names to ukrainian"
+run "LC_ALL=uk_UA.UTF-8 xdg-user-dirs-update --force" \
+"Change home folder names to ukrainian"
 
 run "rm -rf $user_dirs" "Remove previous dirs"
 source ~/.config/user-dirs.dirs # to get New xdg-dirs
+
 run "cp -R to-desktop/* $XDG_DESKTOP_DIR" \
 "Copy files from to-desktop to desktop"
 
-run "echo 'nameserver 8.8.8.8'| sudo tee /etc/resolv.conf" \
+run "sudo mkdir /etc/resolv.conf" \
+"Prepair to set up dns"
+
+run "echo 'nameserver 8.8.8.8'| sudo tee /etc/resolv.conf/resolv.conf" \
 "Setting up DNS(1/2)"
-run "chmod 444 /etc/resolv.conf"\
+
+run "rm -rf /etc/resolv.conf && ln -s /etc/resolv.conf/resolv.conf /etc/" \
 "Setting up DNS(2/2)"

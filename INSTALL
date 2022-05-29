@@ -27,3 +27,6 @@ mint-meta-codecs
 
 # Windows compatibility layer
 wine
+
+# An alternative package manager
+flatpak
