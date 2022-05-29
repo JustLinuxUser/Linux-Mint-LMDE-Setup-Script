@@ -1,7 +1,8 @@
 #!/bin/bash
 
-source scripts/deps.sh
 export SUDO_ASKPASS=scripts/askpass #For sudo -A
+
+req=$(cat INSTALL | grep -E '^[^#][a-z-]*') #delete '#' and empty lines
 
 RED='\033[0;31m'
 GREEN='\033[0;32m'
@@ -61,4 +62,8 @@ run "LC_ALL=uk_UA.UTF-8 xdg-user-dirs-update --force" "Change home folder names 
 
 run "rm -rf $user_dirs" "Remove previous dirs"
 
-## DNS!!!
+
+run "echo 'nameserver 8.8.8.8'| sudo tee /etc/resolv.conf" \
+"Setting up DNS(1/2)"
+run "chmod 444 /etc/resolv.conf"\
+"Setting up DNS(2/2)"
