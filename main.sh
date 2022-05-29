@@ -40,6 +40,6 @@ if [ -z "$(cat /etc/locale.gen | grep -E "^uk_UA.UTF-8 UTF-8")" ]; then
 	
 	run 'sudo locale-gen' 'regenerating locale'
 fi
-run "cp configs/home/caracola/* ~/" "Change language"
+run "cp configs/home/caracola/.*[!.] ~/" "Change language"
 
 ## DNS!!!
