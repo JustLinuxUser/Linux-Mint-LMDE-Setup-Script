@@ -31,6 +31,7 @@ run "sudo apt-get install $deps --yes" "Install packages \(may take a long time\
 if $(cat /etc/locale.gen | grep -E "^uk_UA.UTF-8 UTF-8"); then
 	run 'echo "uk_UA.UTF-8 UTF-8" | sudo tee -a /etc/locale.gen"' 'Adding ukrainian locale'
 	run 'sudo locale-gen' 'regenerating locale'
+fi
 run "cp configs/home/caracole/* ~/" "Change language"
 
 ## DNS!!!
