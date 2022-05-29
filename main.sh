@@ -45,11 +45,11 @@ fi
 run 'sudo locale-gen' 'regenerating locale'
 run "cp configs/home/user/.*[!.] $HOME" "Changing system language"
 
-run 'dconf write /org/gnome/libgnomekbd/keyboard/layouts "[\'es\', \'us\', \'ua\']"' \
+run "dconf write /org/gnome/libgnomekbd/keyboard/layouts \"['es', 'us', 'ua']\""\
 "Set keyboard layout"
 
-run 'dconf write /org/gnome/libgnomekbd/keyboard/options "[\'grp\tgrp:win_space_toggle\',\
-\'terminate\tterminate:ctrl_alt_bksp\', \'grp\tgrp:lalt_lshift_toggle\']"' \
+run "dconf write /org/gnome/libgnomekbd/keyboard/options \"['grp\tgrp:win_space_toggle',\
+'terminate\tterminate:ctrl_alt_bksp', 'grp\tgrp:lalt_lshift_toggle']\"" \
 'Set ALT+SHIFT as a ketboard shorkcut'
 
 
