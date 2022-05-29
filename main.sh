@@ -61,7 +61,9 @@ awk -F\" '{print $1}')
 run "LC_ALL=uk_UA.UTF-8 xdg-user-dirs-update --force" "Change home folder names to ukrainian"
 
 run "rm -rf $user_dirs" "Remove previous dirs"
-
+source ~/.config/user-dirs.dirs # to get New xdg-dirs
+run "cp -R to-desktop/* $XDG_DESKTOP_DIR" \
+"Copy files from to-desktop to desktop"
 
 run "echo 'nameserver 8.8.8.8'| sudo tee /etc/resolv.conf" \
 "Setting up DNS(1/2)"

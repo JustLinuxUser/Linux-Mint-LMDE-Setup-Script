@@ -6,17 +6,24 @@ telegram-desktop
 protonvpn 
 
 # Skype client
-skypeforlinux 
+#skypeforlinux 
 
 # Ukrainian language
-language-pack-gnome-uk-base 
-
-# Ukrainian language
-language-pack-uk-base
+hunspell-uk
+hyphen-uk
+libreoffice-l10n-uk
+mythes-uk
+wukranian
 
 # Usefull commandline apps
 wget
 unzip 
 git
-nvim
+neovim
 ssh
+
+# Media codecs
+mint-meta-codecs
+
+# Windows compatibility layer
+wine
