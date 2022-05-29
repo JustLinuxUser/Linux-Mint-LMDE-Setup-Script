@@ -25,7 +25,7 @@ run () {
 }
 
 run "sudo apt-get update --yes" "Update package database"
-run "sudo apt-get upgrade --yes" "Upgrade installed packages"
+run "sudo apt-get upgrade --yes" "Upgrade installed packages \(may take a long time\)"
 run "sudo apt-get install $deps --yes" "Install packages \(may take a long time\)"
 
 if $(cat /etc/locale.gen | grep -E "^uk_UA.UTF-8 UTF-8"); then
