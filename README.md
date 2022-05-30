@@ -1,6 +1,6 @@
 # Linux-Mint-Setup-Scripts
 ## Help:
-- [LMDE Installation settings](./LMDE_INSTALL.md) s
+- [LMDE Installation settings](./LMDE_INSTALL.md) 
 - [Script ussage](./USSAGE.md) 
 ## This script handles:
 ### Packages
