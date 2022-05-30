@@ -1,5 +1,0 @@
-<network>
-    <name>bridged-network</name>
-    <forward mode="bridge" />
-    <bridge name="wg0-client" />
-</network>
