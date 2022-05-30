@@ -14,7 +14,7 @@ rm -f log # remove logfile if exists
 run () {
    sudo -A -v &> /dev/null
    echo -e "${YELLOW} RUNNING: ${NC} ${2}" | tee -a log
-   $echo $1 | bash &>> log
+   echo $1 | bash &>> log
    if [ $? -eq 0 ]; then
    	echo -e "${GREEN} SUCCESS: ${NC} ${2}"
    else
@@ -26,7 +26,7 @@ run () {
    fi
 }
 
-run "'sudo dpkg -i debs/*'" "Installing predownloaded packages"
+run "sudo dpkg -i debs/*" "Installing predownloaded packages"
 run "sudo apt-get update --yes" \
 "Update package database"
 
