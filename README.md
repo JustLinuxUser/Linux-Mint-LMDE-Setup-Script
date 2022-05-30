@@ -1,7 +1,5 @@
 # Linux-Mint-Setup-Scripts
 
-
-
 ## This script handles:
 ### Packages
 - Installs third-party .deb packages (protonVPN)
@@ -25,3 +23,6 @@
 - Creates dir /etc/resolv/
 - Writes "nameserver 8.8.8.8" to /etc/resolv/resolv.conf
 - Links /etc/resolv/resolv.conf to /etc/resolv.conf
+
+### Files
+- Copy files from to-desktop/ to newly created desktop
