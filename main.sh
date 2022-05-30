@@ -10,22 +10,22 @@ YELLOW='\033[1;33m'
 NC='\033[0m' # No Color
 
 rm -f log # remove logfile if exists
-ussage="script usage: $(basename \$0) [-v] [-h]
-	[-v] - Verbose output
+ussage="script usage: [-v] [-h] \n
+	[-v] - Verbose output \n
 	[-h] - Show this help message"
 
 
-while getopts 'vh:' OPTION; do
+while getopts 'vh' OPTION; do
   case "$OPTION" in
     v)
       v=true
       ;;
     h)
-      echo $ussage
-      exit 0
+      echo -e $ussage
+      exit 0 
       ;;
     ?)
-      echo $ussage >&2
+      echo -e $ussage >&2
       exit 1
       ;;
   esac
