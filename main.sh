@@ -26,8 +26,8 @@ run () {
    fi
 }
 
-run "sudo dpkg -i debs/*" "Installing predownloaded packages"
-run "sudo apt-get dist-update --yes" \
+run "'sudo dpkg -i debs/*'" "Installing predownloaded packages"
+run "sudo apt-get update --yes" \
 "Update package database"
 
 run "sudo apt-get dist-upgrade --yes" \
