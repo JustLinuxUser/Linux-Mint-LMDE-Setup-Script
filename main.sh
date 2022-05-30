@@ -10,11 +10,37 @@ YELLOW='\033[1;33m'
 NC='\033[0m' # No Color
 
 rm -f log # remove logfile if exists
+ussage="script usage: $(basename \$0) [-v] [-h]
+	[-v] - Verbose output
+	[-h] - Show this help message"
+
+
+while getopts 'vh:' OPTION; do
+  case "$OPTION" in
+    v)
+      v=true
+      ;;
+    h)
+      echo $ussage
+      exit 0
+      ;;
+    ?)
+      echo $ussage >&2
+      exit 1
+      ;;
+  esac
+done
+
 
 run () {
    sudo -A -v &> /dev/null
    echo -e "${YELLOW} RUNNING: ${NC} ${2}" | tee -a log
-   echo $1 | bash &>> log
+   if [ $v ]; then
+   	echo $1 | bash | tee -a log
+   else
+   	echo $1 | bash &>> log
+   fi
+   
    if [ $? -eq 0 ]; then
    	echo -e "${GREEN} SUCCESS: ${NC} ${2}"
    else
