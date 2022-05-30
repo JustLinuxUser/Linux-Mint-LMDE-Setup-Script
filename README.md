@@ -1,5 +1,7 @@
 # Linux-Mint-Setup-Scripts
-
+## Help:
+- [LMDE Installation settings](./LMDE_INSTALL.md) s
+- [Script ussage](./USSAGE.md) 
 ## This script handles:
 ### Packages
 - Installs third-party .deb packages (protonVPN)
