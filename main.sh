@@ -74,7 +74,7 @@ fi
 run 'sudo locale-gen' 'regenerating locale'
 run "cp configs/home/user/.*[!.] $HOME" "Changing system language"
 
-run $'dconf write /org/gnome/libgnomekbd/keyboard/layouts \'["es", "us", "ru"]\'' \
+run $'dconf write /org/gnome/libgnomekbd/keyboard/layouts \'["us", "ua", "es"]\'' \
 "Set keyboard layout"
 
 run $'dconf write /org/gnome/libgnomekbd/keyboard/options \'["grp\\tgrp:win_space_toggle",
