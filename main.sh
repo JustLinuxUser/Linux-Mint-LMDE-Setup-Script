@@ -14,7 +14,7 @@ rm -f log # remove logfile if exists
 run () {
    sudo -A -v &> /dev/null
    echo -e "${YELLOW} RUNNING: ${NC} ${2}" | tee -a log
-   $1 &>> log
+   $echo $1 | bash &>> log
    if [ $? -eq 0 ]; then
    	echo -e "${GREEN} SUCCESS: ${NC} ${2}"
    else
@@ -27,7 +27,7 @@ run () {
 }
 
 run "sudo dpkg -i debs/*" "Installing predownloaded packages"
-run "sudo apt-get update --yes" \
+run "sudo apt-get dist-update --yes" \
 "Update package database"
 
 run "sudo apt-get dist-upgrade --yes" \
@@ -36,24 +36,23 @@ run "sudo apt-get dist-upgrade --yes" \
 run "sudo apt-get install $req --yes" \
 "Install packages (may take a long time)"
 
-run "flatpak install flathub com.skype.Client" \
+run "flatpak install flathub com.skype.Client -y" \
 "Installing flatpak packages"
 
 # Check if Ukrainian locale is already enabled
-if [ -z "$(cat /etc/locale.gen | grep -E "^uk_UA.UTF-8 UTF-8")" ]; then
-	run 'echo "uk_UA.UTF-8 UTF-8" | \
-		sudo tee -a /etc/locale.gen"' \
-		'Adding ukrainian locale'
+if [[ -z $(cat /etc/locale.gen | grep -E "^uk_UA.UTF-8 UTF-8") ]]; then
+ 	run 'echo "uk_UA.UTF-8 UTF-8" | sudo tee -a /etc/locale.gen' \
+	'Adding ukrainian locale'
 fi
 
 run 'sudo locale-gen' 'regenerating locale'
 run "cp configs/home/user/.*[!.] $HOME" "Changing system language"
 
-run "dconf write /org/gnome/libgnomekbd/keyboard/layouts \"['es', 'us', 'ua']\""\
+run $'dconf write /org/gnome/libgnomekbd/keyboard/layouts \'["es", "us", "ru"]\'' \
 "Set keyboard layout"
 
-run "dconf write /org/gnome/libgnomekbd/keyboard/options \"['grp\tgrp:win_space_toggle',\
-'terminate\tterminate:ctrl_alt_bksp', 'grp\tgrp:lalt_lshift_toggle']\"" \
+run $'dconf write /org/gnome/libgnomekbd/keyboard/options \'[\"grp\tgrp:win_space_toggle\",
+"terminate\tterminate:ctrl_alt_bksp", "grp\tgrp:lalt_lshift_toggle"]\'' \
 'Set ALT+SHIFT as a ketboard shorkcut'
 
 
@@ -71,11 +70,11 @@ source ~/.config/user-dirs.dirs # to get New xdg-dirs
 run "cp -R to-desktop/* $XDG_DESKTOP_DIR" \
 "Copy files from to-desktop to desktop"
 
-run "sudo mkdir /etc/resolv.conf" \
+run "sudo mkdir -p /etc/resolvconf" \
 "Prepair to set up dns"
 
-run "echo 'nameserver 8.8.8.8'| sudo tee /etc/resolv.conf/resolv.conf" \
+run "echo 'nameserver 8.8.8.8'| sudo tee /etc/resolvconf/resolv.conf" \
 "Setting up DNS(1/2)"
 
-run "rm -rf /etc/resolv.conf && ln -s /etc/resolv.conf/resolv.conf /etc/" \
+run "sudo rm -rf /etc/resolv.conf && sudo ln -s /etc/resolvconf/resolv.conf /etc/" \
 "Setting up DNS(2/2)"
