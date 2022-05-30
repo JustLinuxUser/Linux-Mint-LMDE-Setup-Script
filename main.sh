@@ -82,10 +82,10 @@ run $'dconf write /org/gnome/libgnomekbd/keyboard/options \'[\"grp\tgrp:win_spac
 'Set ALT+SHIFT as a ketboard shorkcut'
 
 
-user_dirs=$(cat .config/user-dirs.dirs | \
+user_dirs=$(cat ~/.config/user-dirs.dirs | \
 tail -n8| \
 awk -F/ '{print $2}' | \
-awk -F\" '{print $1}')
+awk -F\" '{print "~/"$1}')
 
 run "LC_ALL=uk_UA.UTF-8 xdg-user-dirs-update --force" \
 "Change home folder names to ukrainian"
